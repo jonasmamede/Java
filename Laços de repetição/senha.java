@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class senha {
@@ -6,16 +7,17 @@ public class senha {
 
         String senhacorreta = "1234";
 
-        System.out.println("Digite a senha: ");
-        String digitado = entrada.nextLine();
+        while (true) {
+            System.out.println("Digite a senha: ");
+            String digitado = entrada.nextLine();
 
-        while(true) {
-            if (digitado==senhacorreta) {
-                System.out.println("Acesso Permitido");       
+            if (digitado.equals(senhacorreta)) {
+                System.out.println("Acesso Permitido");
                 break;
-            }else{
-                    System.out.println("Acesso nego");
-                }
+            } else {
+                System.out.println("Acesso negado");
+
             }
-        }       
+        }
     }
+}
