@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class calculadora {
+public class CalculadoraSimples {
 
     public static void soma(){
         Scanner entrada = new Scanner(System.in);
