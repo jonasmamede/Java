@@ -20,7 +20,7 @@ public class Estoque {
             prod.Quantidade = entrada.nextInt();
             produtosList.add(prod);
             System.out.println("");
-            System.out.println("Preço Unitário" + (i+1) + ": ");
+            System.out.println("Preço Unitário " + (i+1) + ": ");
             prod.Preco = entrada.nextDouble();
             System.out.println("---------------------------");
         }
@@ -30,5 +30,16 @@ public class Estoque {
             Produtos p = produtosList.get(i);
             System.out.println((i+1) + " - "+ p.Codigo + " // " + p.Nome + " // Quantidade - " + p.Quantidade + "x // " + p.Preco + "$");
         }
+    }
+
+
+    public boolean deletarProduto( int codigo){
+        for (int i = 0; i < produtosList.size(); i++) {
+            if (produtosList.get(i).Codigo == codigo) {
+                produtosList.remove(i);
+                return true;
+            }     
+        }  
+        return false; 
     }
 }

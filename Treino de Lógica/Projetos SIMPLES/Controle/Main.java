@@ -7,9 +7,16 @@ public class Main {
         System.out.println("Quantidade de produtos que deseja cadastrar: ");
         int quant = entrada.nextInt();
         estoque.adicionarProduto(quant);
+
         System.out.println("-----------------");
         estoque.listarProdutos();
         
+        System.out.println("Codigo: ");
+        int codigo = entrada.nextInt();
+        estoque.deletarProduto(codigo);
+        
+        System.out.println("-----------------");
+        estoque.listarProdutos();
     }
 
 }
