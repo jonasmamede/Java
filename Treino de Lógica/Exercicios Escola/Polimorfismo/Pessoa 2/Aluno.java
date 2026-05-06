@@ -1,0 +1,3 @@
+class Aluno extends Pessoa {
+
+}
