@@ -1,11 +1,15 @@
 public class Main {
-    public static void main(String[] args) {
-        Pessoa pessoa = new Pessoa();
 
-        pessoa.saudacao("aluno");
-        System.out.println("----------------");
-        pessoa.saudacao("professor");
-        System.out.println("----------------");
-        pessoa.saudacao("outro");
+    public static void main(String[] args) {
+
+        Pessoa p = new Pessoa();
+
+        Pessoa pessoa = new Pessoa();
+        Aluno aluno = new Aluno();
+        Professor professor = new Professor();
+
+        p.saudacao(pessoa);
+        p.saudacao(aluno);
+        p.saudacao(professor);
     }
 }

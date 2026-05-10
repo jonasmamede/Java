@@ -1,12 +1,14 @@
 class Pessoa {
 
-    public void saudacao(String tipo) {
-        if (tipo.equals("aluno")) {
-            System.out.println("Olá, aluno!");
-        } else if (tipo.equals("professor")) {
-            System.out.println("Bom dia, professor!");
-        } else {
-            System.out.println("Olá!");
-        }
+    public void saudacao(Pessoa pessoa) {
+        return "Olá, pessoa!";
+    }
+
+    public void saudacao(Aluno aluno) {
+        return "Olá, aluno!";
+    }
+
+    public void saudacao(Professor professor) {
+        return "Bom dia, professor!"
     }
 }
