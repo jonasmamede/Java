@@ -171,7 +171,8 @@ public class Main extends JFrame {
         }
     }
 
-    public static void Main(String[] args) {
+    // MÉTODO PRINCIPAL
+    public static void main(String[] args) {
 
         new Main();
     }
