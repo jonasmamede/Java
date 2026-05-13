@@ -1,76 +1,178 @@
 import javax.swing.*;
 import java.awt.event.*;
-
-class Pessoa {
-    public void saudacao() {
-        JOptionPane.showMessageDialog(null,
-                "Olá! Seja bem-vindo.");
-    }
-}
-
-class Aluno extends Pessoa {
-    @Override
-    public void saudacao() {
-        JOptionPane.showMessageDialog(null,
-                "Olá Aluno! Bons estudos.");
-    }
-}
-
-class Professor extends Pessoa {
-    @Override
-    public void saudacao() {
-        JOptionPane.showMessageDialog(null,
-                "Olá Professor! Boa aula.");
-    }
-}
+import java.util.ArrayList;
 
 public class Main extends JFrame {
 
-    JButton btnPessoa = new JButton("Pessoa");
-    JButton btnAluno = new JButton("Aluno");
-    JButton btnProfessor = new JButton("Professor");
+    // BOTÕES
+    JButton btnPessoa = new JButton("Cadastrar Pessoa");
+    JButton btnAluno = new JButton("Cadastrar Aluno");
+    JButton btnProfessor = new JButton("Cadastrar Professor");
 
-    Pessoa pessoa = new Pessoa();
-    Aluno aluno = new Aluno();
-    Professor professor = new Professor();
+    // ÁREAS DE TEXTO
+    JTextArea areaPessoa = new JTextArea();
+    JTextArea areaAluno = new JTextArea();
+    JTextArea areaProfessor = new JTextArea();
+
+    // LISTAS
+    ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    ArrayList<Aluno> listaAlunos = new ArrayList<>();
+    ArrayList<Professor> listaProfessores = new ArrayList<>();
 
     public Main() {
 
-        setTitle("Sistema de Saudação");
-        setSize(350, 250);
+        setTitle("Sistema de Cadastro");
+        setSize(950, 500);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        btnPessoa.setBounds(100, 30, 120, 30);
-        btnAluno.setBounds(100, 80, 120, 30);
-        btnProfessor.setBounds(100, 130, 120, 30);
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        btnPessoa.setBounds(20, 20, 220, 30);
+        btnAluno.setBounds(360, 20, 220, 30);
+        btnProfessor.setBounds(690, 20, 220, 30);
 
         add(btnPessoa);
         add(btnAluno);
         add(btnProfessor);
 
+        /* =========================
+           PESSOAS
+        ========================= */
+
+        JLabel lblPessoa = new JLabel("Pessoas Cadastradas");
+        lblPessoa.setBounds(20, 60, 200, 20);
+
+        JScrollPane scrollPessoa = new JScrollPane(areaPessoa);
+        scrollPessoa.setBounds(20, 90, 250, 320);
+
+        add(lblPessoa);
+        add(scrollPessoa);
+
+        /* =========================
+           ALUNOS
+        ========================= */
+
+        JLabel lblAluno = new JLabel("Alunos Cadastrados");
+        lblAluno.setBounds(360, 60, 200, 20);
+
+        JScrollPane scrollAluno = new JScrollPane(areaAluno);
+        scrollAluno.setBounds(360, 90, 250, 320);
+
+        add(lblAluno);
+        add(scrollAluno);
+
+        /* =========================
+           PROFESSORES
+        ========================= */
+
+        JLabel lblProfessor = new JLabel("Professores Cadastrados");
+        lblProfessor.setBounds(690, 60, 220, 20);
+
+        JScrollPane scrollProfessor = new JScrollPane(areaProfessor);
+        scrollProfessor.setBounds(690, 90, 250, 320);
+
+        add(lblProfessor);
+        add(scrollProfessor);
+
+        /* =========================
+           EVENTO PESSOA
+        ========================= */
+
         btnPessoa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                pessoa.saudacao();
+
+                Pessoa p = new Pessoa();
+                p.cadastrar();
+
+                listaPessoas.add(p);
+
+                atualizarPessoas();
             }
         });
+
+        /* =========================
+           EVENTO ALUNO
+        ========================= */
 
         btnAluno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                aluno.saudacao();
+
+                Aluno a = new Aluno();
+                a.cadastrar();
+
+                listaAlunos.add(a);
+
+                atualizarAlunos();
             }
         });
 
+        /* =========================
+           EVENTO PROFESSOR
+        ========================= */
+
         btnProfessor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                professor.saudacao();
+
+                Professor p = new Professor();
+                p.cadastrar();
+
+                listaProfessores.add(p);
+
+                atualizarProfessores();
             }
         });
 
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /* =========================
+       ATUALIZAR PESSOAS
+    ========================= */
+
+    public void atualizarPessoas() {
+
+        areaPessoa.setText("");
+
+        for (Pessoa p : listaPessoas) {
+
+            areaPessoa.append(p.mostrarDados() + "\n\n");
+        }
+    }
+
+    /* =========================
+       ATUALIZAR ALUNOS
+    ========================= */
+
+    public void atualizarAlunos() {
+
+        areaAluno.setText("");
+
+        for (Aluno a : listaAlunos) {
+
+            areaAluno.append(a.mostrarDados() + "\n\n");
+        }
+    }
+
+    /* =========================
+       ATUALIZAR PROFESSORES
+    ========================= */
+
+    public void atualizarProfessores() {
+
+        areaProfessor.setText("");
+
+        for (Professor p : listaProfessores) {
+
+            areaProfessor.append(p.mostrarDados() + "\n\n");
+        }
+    }
+
+    public static void Main(String[] args) {
+
         new Main();
     }
 }
