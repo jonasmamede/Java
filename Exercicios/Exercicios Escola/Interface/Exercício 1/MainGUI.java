@@ -2,24 +2,21 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class Main extends JFrame {
+public class MainGUI extends JFrame {
 
-    // BOTÕES
     JButton btnPessoa = new JButton("Cadastrar Pessoa");
     JButton btnAluno = new JButton("Cadastrar Aluno");
     JButton btnProfessor = new JButton("Cadastrar Professor");
 
-    // ÁREAS DE TEXTO
     JTextArea areaPessoa = new JTextArea();
     JTextArea areaAluno = new JTextArea();
     JTextArea areaProfessor = new JTextArea();
 
-    // LISTAS
     ArrayList<Pessoa> listaPessoas = new ArrayList<>();
     ArrayList<Aluno> listaAlunos = new ArrayList<>();
     ArrayList<Professor> listaProfessores = new ArrayList<>();
 
-    public Main() {
+    public MainGUI() {
 
         setTitle("Sistema de Cadastro");
         setSize(950, 500);
@@ -27,9 +24,7 @@ public class Main extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        /* =========================
-           BOTÕES
-        ========================= */
+        // BOTÕES
 
         btnPessoa.setBounds(20, 20, 220, 30);
         btnAluno.setBounds(360, 20, 220, 30);
@@ -39,9 +34,7 @@ public class Main extends JFrame {
         add(btnAluno);
         add(btnProfessor);
 
-        /* =========================
-           PESSOAS
-        ========================= */
+        // PESSOAS
 
         JLabel lblPessoa = new JLabel("Pessoas Cadastradas");
         lblPessoa.setBounds(20, 60, 200, 20);
@@ -52,9 +45,7 @@ public class Main extends JFrame {
         add(lblPessoa);
         add(scrollPessoa);
 
-        /* =========================
-           ALUNOS
-        ========================= */
+        // ALUNOS
 
         JLabel lblAluno = new JLabel("Alunos Cadastrados");
         lblAluno.setBounds(360, 60, 200, 20);
@@ -65,9 +56,7 @@ public class Main extends JFrame {
         add(lblAluno);
         add(scrollAluno);
 
-        /* =========================
-           PROFESSORES
-        ========================= */
+        // PROFESSORES
 
         JLabel lblProfessor = new JLabel("Professores Cadastrados");
         lblProfessor.setBounds(690, 60, 220, 20);
@@ -78,60 +67,77 @@ public class Main extends JFrame {
         add(lblProfessor);
         add(scrollProfessor);
 
-        /* =========================
-           EVENTO PESSOA
-        ========================= */
+        // EVENTO PESSOA
 
         btnPessoa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 Pessoa p = new Pessoa();
-                p.cadastrar();
 
-                listaPessoas.add(p);
+                try {
 
-                atualizarPessoas();
+                    p.cadastrar();
+
+                    listaPessoas.add(p);
+
+                    atualizarPessoas();
+
+                } catch (Exception ex) {
+
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage());
+                }
             }
         });
 
-        /* =========================
-           EVENTO ALUNO
-        ========================= */
+        // EVENTO ALUNO
 
         btnAluno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 Aluno a = new Aluno();
-                a.cadastrar();
 
-                listaAlunos.add(a);
+                try {
 
-                atualizarAlunos();
+                    a.cadastrar();
+
+                    listaAlunos.add(a);
+
+                    atualizarAlunos();
+
+                } catch (Exception ex) {
+
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage());
+                }
             }
         });
 
-        /* =========================
-           EVENTO PROFESSOR
-        ========================= */
+        // EVENTO PROFESSOR
 
         btnProfessor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 Professor p = new Professor();
-                p.cadastrar();
 
-                listaProfessores.add(p);
+                try {
 
-                atualizarProfessores();
+                    p.cadastrar();
+
+                    listaProfessores.add(p);
+
+                    atualizarProfessores();
+
+                } catch (Exception ex) {
+
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage());
+                }
             }
         });
 
         setVisible(true);
     }
-
-    /* =========================
-       ATUALIZAR PESSOAS
-    ========================= */
 
     public void atualizarPessoas() {
 
@@ -139,13 +145,9 @@ public class Main extends JFrame {
 
         for (Pessoa p : listaPessoas) {
 
-            areaPessoa.append(p.mostrarDados() + "\n\n");
+            areaPessoa.append(p + "\n\n");
         }
     }
-
-    /* =========================
-       ATUALIZAR ALUNOS
-    ========================= */
 
     public void atualizarAlunos() {
 
@@ -153,13 +155,9 @@ public class Main extends JFrame {
 
         for (Aluno a : listaAlunos) {
 
-            areaAluno.append(a.mostrarDados() + "\n\n");
+            areaAluno.append(a + "\n\n");
         }
     }
-
-    /* =========================
-       ATUALIZAR PROFESSORES
-    ========================= */
 
     public void atualizarProfessores() {
 
@@ -167,13 +165,12 @@ public class Main extends JFrame {
 
         for (Professor p : listaProfessores) {
 
-            areaProfessor.append(p.mostrarDados() + "\n\n");
+            areaProfessor.append(p + "\n\n");
         }
     }
 
-    // MÉTODO PRINCIPAL
     public static void main(String[] args) {
 
-        new Main();
+        new MainGUI();
     }
 }
