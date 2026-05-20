@@ -5,6 +5,7 @@ public class Pessoa {
     protected String nome;
     protected String cpf;
     protected String telefone;
+    protected String dataNascimento;
 
     // GUI
 
@@ -20,6 +21,10 @@ public class Pessoa {
 
         telefone = Validador.lerTelefoneGUI(
                 "Digite o telefone:"
+        );
+
+        dataNascimento = Validador.lerDataGUI(
+                "Digite a data de nascimento (dd/MM/yyyy):"
         );
     }
 
@@ -41,6 +46,11 @@ public class Pessoa {
                 sc,
                 "Telefone: "
         );
+
+        dataNascimento = Validador.lerData(
+                sc,
+                "Data de nascimento (dd/MM/yyyy): "
+        );
     }
 
     @Override
@@ -48,6 +58,7 @@ public class Pessoa {
 
         return "Nome: " + nome +
                 " | CPF: " + cpf +
-                " | Telefone: " + telefone;
+                " | Telefone: " + telefone +
+                " | Data Nascimento: " + dataNascimento;
     }
 }

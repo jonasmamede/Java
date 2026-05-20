@@ -1,7 +1,16 @@
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Validador {
+
+    // FORMATADOR
+
+    private static final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // =========================
     // VALIDAR NOME
@@ -134,6 +143,79 @@ public class Validador {
     }
 
     // =========================
+    // VALIDAR DATA
+    // =========================
+
+    public static String lerData(Scanner sc, String mensagem) {
+
+        while (true) {
+
+            try {
+
+                System.out.print(mensagem);
+
+                String data = sc.nextLine();
+
+                validarData(data);
+
+                return data;
+
+            } catch (IllegalArgumentException e) {
+
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void validarData(String data) {
+
+        if (data == null || data.trim().isEmpty()) {
+
+            throw new IllegalArgumentException(
+                    "Data vazia!"
+            );
+        }
+
+        LocalDate dataNascimento;
+
+        try {
+
+            dataNascimento = LocalDate.parse(data, formatter);
+
+        } catch (DateTimeParseException e) {
+
+            throw new IllegalArgumentException(
+                    "Formato inválido! Use dd/MM/yyyy"
+            );
+        }
+
+        LocalDate hoje = LocalDate.now();
+
+        if (dataNascimento.isAfter(hoje)) {
+
+            throw new IllegalArgumentException(
+                    "A data não pode ser futura!"
+            );
+        }
+
+        int idade = Period.between(dataNascimento, hoje).getYears();
+
+        if (idade < 14) {
+
+            throw new IllegalArgumentException(
+                    "Idade muito baixa para cadastro!"
+            );
+        }
+
+        if (idade > 120) {
+
+            throw new IllegalArgumentException(
+                    "Data de nascimento inválida!"
+            );
+        }
+    }
+
+    // =========================
     // VALIDAR INTEIRO
     // =========================
 
@@ -218,6 +300,29 @@ public class Validador {
                 validarTelefone(telefone);
 
                 return telefone;
+
+            } catch (IllegalArgumentException e) {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        e.getMessage()
+                );
+            }
+        }
+    }
+
+    public static String lerDataGUI(String mensagem) {
+
+        while (true) {
+
+            try {
+
+                String data =
+                        JOptionPane.showInputDialog(mensagem);
+
+                validarData(data);
+
+                return data;
 
             } catch (IllegalArgumentException e) {
 
