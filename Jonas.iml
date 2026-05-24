@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Treino de Lógica/Laços de repetição" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Treino de Lógica/Matemática e Lógica" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Treino de Lógica/Projetos SIMPLES" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Exercicios/Exercicios Escola/Classes/.venv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
